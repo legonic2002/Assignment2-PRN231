@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    var product = ViewData["Order"] as Order;
 }
 
 <h1>Create</h1>
@@ -18,6 +19,13 @@
                 <span asp-validation-for="MemberId" class="text-danger"></span>
             </div>
           
+
+            <div class="form-group">
+                <label asp-for="OrderDate" class="control-label"></label>
+                <input asp-for="OrderDate" class="form-control"   />
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="RequiredDate" class="control-label"></label>
                 <input asp-for="RequiredDate" class="form-control" />

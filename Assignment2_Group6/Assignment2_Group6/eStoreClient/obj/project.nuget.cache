@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LqPylrficXFe5mMpjPy9/r42lOO1rs3jmBrFFE9JRHl1yQyLLXhGo1belFTzWq0vtU8S+zgUQeprvivL1Pk/TA==",
+  "dgSpecHash": "EFruGXhljbv5cjgHMOmVRCu5tilSsbr8HCTeEXK7lKLECLnGm0jYmit1oUmUzWeDMEUD28VlCkOcxpc6vyJchQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Legon\\Downloads\\Assignment2_Group6\\Assignment2_Group6\\eStoreClient\\eStoreClient.csproj",
+  "projectFilePath": "D:\\ass2\\Assignment2_Group6\\Assignment2-PRN231\\Assignment2_Group6\\Assignment2_Group6\\eStoreClient\\eStoreClient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Legon\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Legon\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

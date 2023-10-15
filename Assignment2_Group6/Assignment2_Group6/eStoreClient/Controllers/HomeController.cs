@@ -33,59 +33,128 @@ namespace eStoreClient.Controllers
         {
             return View("AdminView");
         }
-        public async Task<IActionResult> GetList(int? id)
+        public async Task<IActionResult> GetList(int? id, DateTime? StartDate, DateTime? EndDate)
         {
             ViewBag.OpenID = id;
-            ProductApiUrl = "http://localhost:5111/odata/Orders";
-            HttpResponseMessage response = await client.GetAsync(ProductApiUrl);
-            string strData = await response.Content.ReadAsStringAsync();
-
-            dynamic temp = JObject.Parse(strData);
-            var lst = temp.value;
-
-            List<Order> items = ((JArray)temp.value).Select(
-            x => new Order
+            if (StartDate != null && EndDate != null)
             {
-                OrderId = (int)x["OrderId"],
-                MemberId = (int)x["MemberId"],
-                OrderDate = (DateTime)x["OrderDate"],
-                RequiredDate = (DateTime)x["RequiredDate"],
-                ShippedDate = (DateTime)x["ShippedDate"],
-                Freight = (int)x["Freight"]
+                ProductApiUrl = "http://localhost:5111/odata/Orders";
+                HttpResponseMessage response = await client.GetAsync(ProductApiUrl);
+                string strData = await response.Content.ReadAsStringAsync();
+
+                dynamic temp = JObject.Parse(strData);
+                var lst = temp.value;
+
+                List<Order> items = ((JArray)temp.value).Select(
+                x => new Order
+                {
+                    OrderId = (int)x["OrderId"],
+                    MemberId = (int)x["MemberId"],
+                    OrderDate = (DateTime)x["OrderDate"],
+                    RequiredDate = (DateTime)x["RequiredDate"],
+                    ShippedDate = (DateTime)x["ShippedDate"],
+                    Freight = (int)x["Freight"]
 
 
+                }
+
+                ).ToList();
+
+                List<Order> tempForOrder = new List<Order>();
+                foreach (Order p in items)
+                {
+                    if (p.OrderDate.CompareTo(StartDate) > 0 && p.OrderDate.CompareTo(EndDate) < 0)
+                    {
+                        tempForOrder.Add(p);
+                    }
+                }
+                items = tempForOrder;
+
+
+                ProductApiUrl = "http://localhost:5111/odata/OrderDetails";
+                response = await client.GetAsync(ProductApiUrl);
+                strData = await response.Content.ReadAsStringAsync();
+
+                temp = JObject.Parse(strData);
+                lst = temp.value;
+
+                List<OrderDetail> listODetails = ((JArray)temp.value).Select(
+                x => new OrderDetail
+                {
+                    OrderDetailId = (int)x["OrderDetailId"],
+                    ProductId = (int)x["ProductId"],
+                    OrderId = (int)x["OrderId"],
+                    UnitPrice = (int)x["UnitPrice"],
+                    Quantity = (int)x["Quantity"],
+                    Discount = (int)x["Discount"],
+                }
+
+                ).ToList();
+
+                ViewBag.listODetails = listODetails;
+
+                MainPageModel mymodel = new MainPageModel();
+                mymodel.Order = items;
+                mymodel.OrderDetail = listODetails;
+
+                return View("OrderList",mymodel);
             }
-
-            ).ToList();
-
-
-            ProductApiUrl = "http://localhost:5111/odata/OrderDetails";
-            response = await client.GetAsync(ProductApiUrl);
-            strData = await response.Content.ReadAsStringAsync();
-
-            temp = JObject.Parse(strData);
-            lst = temp.value;
-
-            List<OrderDetail> listODetails = ((JArray)temp.value).Select(
-            x => new OrderDetail
+            else
             {
-                OrderDetailId = (int)x["OrderDetailId"],
-                ProductId = (int)x["ProductId"],
-                OrderId = (int)x["OrderId"],
-                UnitPrice = (int)x["UnitPrice"],
-                Quantity = (int)x["Quantity"],
-                Discount = (int)x["Discount"],
+
+
+                ViewBag.OpenID = id;
+                ProductApiUrl = "http://localhost:5111/odata/Orders";
+                HttpResponseMessage response = await client.GetAsync(ProductApiUrl);
+                string strData = await response.Content.ReadAsStringAsync();
+
+                dynamic temp = JObject.Parse(strData);
+                var lst = temp.value;
+
+                List<Order> items = ((JArray)temp.value).Select(
+                x => new Order
+                {
+                    OrderId = (int)x["OrderId"],
+                    MemberId = (int)x["MemberId"],
+                    OrderDate = (DateTime)x["OrderDate"],
+                    RequiredDate = (DateTime)x["RequiredDate"],
+                    ShippedDate = (DateTime)x["ShippedDate"],
+                    Freight = (int)x["Freight"]
+
+
+                }
+
+                ).ToList();
+
+
+                ProductApiUrl = "http://localhost:5111/odata/OrderDetails";
+                response = await client.GetAsync(ProductApiUrl);
+                strData = await response.Content.ReadAsStringAsync();
+
+                temp = JObject.Parse(strData);
+                lst = temp.value;
+
+                List<OrderDetail> listODetails = ((JArray)temp.value).Select(
+                x => new OrderDetail
+                {
+                    OrderDetailId = (int)x["OrderDetailId"],
+                    ProductId = (int)x["ProductId"],
+                    OrderId = (int)x["OrderId"],
+                    UnitPrice = (int)x["UnitPrice"],
+                    Quantity = (int)x["Quantity"],
+                    Discount = (int)x["Discount"],
+                }
+
+                ).ToList();
+
+                ViewBag.listODetails = listODetails;
+
+                MainPageModel mymodel = new MainPageModel();
+                mymodel.Order = items;
+                mymodel.OrderDetail = listODetails;
+
+                return View("OrderList", mymodel);
             }
-
-            ).ToList();
-
-            ViewBag.listODetails = listODetails;
-
-            MainPageModel mymodel = new MainPageModel();
-            mymodel.Order = items;
-            mymodel.OrderDetail = listODetails;
-
-            return View("OrderList",mymodel);
         }
         public async Task<IActionResult> Login(string email, string password)
         {

@@ -13,11 +13,21 @@
 )</br>
 
 <p>
+
+<p>
+    <form method="Index">
+        <label>Start Date</label>
+        <input name="StartDate" type="date" />
+        <label>End Date</label>
+        <input name="EndDate" type="date" />
+        <input type="submit" value="Search" />
+    </form>
+</p>
+
+
     <a asp-action="Create">Create New Order</a>
 </p>
-<p>
-    <a asp-action="CreateDetails">Create New Order Details</a>
-</p>
+
 <table class="fold-table">
     <thead>
         <tr>
@@ -62,9 +72,10 @@
                 @Html.DisplayFor(modelItem => item.Freight)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.OrderId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OrderId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>
+                    <a asp-action="CreateDetaills" asp-route-id="@item.OrderId">Create OrderDetails</a> |
+                <a asp-action="Edit" asp-route-id="@item.OrderId">Edit Order</a> |
+                    
+                    <a asp-action="Delete" asp-route-id="@item.OrderId">Delete Order</a>
             </td>
         </tr>
           <tr class="fold">

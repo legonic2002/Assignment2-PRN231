@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Legon\\Downloads\\Assignment2_Group6\\Assignment2_Group6\\eStoreClient\\eStoreClient.csproj": {}
+    "D:\\ass2\\Assignment2_Group6\\Assignment2-PRN231\\Assignment2_Group6\\Assignment2_Group6\\eStoreClient\\eStoreClient.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Legon\\Downloads\\Assignment2_Group6\\Assignment2_Group6\\eStoreClient\\eStoreClient.csproj": {
+    "D:\\ass2\\Assignment2_Group6\\Assignment2-PRN231\\Assignment2_Group6\\Assignment2_Group6\\eStoreClient\\eStoreClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Legon\\Downloads\\Assignment2_Group6\\Assignment2_Group6\\eStoreClient\\eStoreClient.csproj",
+        "projectUniqueName": "D:\\ass2\\Assignment2_Group6\\Assignment2-PRN231\\Assignment2_Group6\\Assignment2_Group6\\eStoreClient\\eStoreClient.csproj",
         "projectName": "eStoreClient",
-        "projectPath": "C:\\Users\\Legon\\Downloads\\Assignment2_Group6\\Assignment2_Group6\\eStoreClient\\eStoreClient.csproj",
+        "projectPath": "D:\\ass2\\Assignment2_Group6\\Assignment2-PRN231\\Assignment2_Group6\\Assignment2_Group6\\eStoreClient\\eStoreClient.csproj",
         "packagesPath": "C:\\Users\\Legon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Legon\\Downloads\\Assignment2_Group6\\Assignment2_Group6\\eStoreClient\\obj\\",
+        "outputPath": "D:\\ass2\\Assignment2_Group6\\Assignment2-PRN231\\Assignment2_Group6\\Assignment2_Group6\\eStoreClient\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Legon\\AppData\\Roaming\\NuGet\\NuGet.Config",
